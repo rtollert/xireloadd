@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+# xireloadd: reload .xinputrc on XInput2 device hotplug.
+# Copyright (C) 2018 Richard Tollerton.
+# License ArtisticLicense2.0 <http://www.perlfoundation.org/attachment/legal/artistic-2_0.txt>
+
+XINPUTRC=~/.xinputrc
+
+[[ -e $XINPUTRC ]] || exit 0
+
+if ! [[ -x $XINPUTRC ]]; then
+	echo "ERROR: $XINPUTRC not executable" >&2
+	exit 1
+fi
+
+XIDMON=$(dirname $0)/xidmon
+
+if ! [[ -x $XIDMON ]]; then
+	echo "ERROR: $XIDMON not executable" >&2
+	exit 1
+fi
+
+while read -r devinfo; do
+	$XINPUTRC
+done < <($XIDMON)

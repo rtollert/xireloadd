@@ -22,4 +22,4 @@ fi
 
 while read -r devinfo; do
 	$XINPUTRC
-done < <($XIDMON)
+done < <(exec $XIDMON)

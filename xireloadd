@@ -20,6 +20,8 @@ if ! [[ -x $XIDMON ]]; then
 	exit 1
 fi
 
+$XINPUTRC
+
 while read -r devinfo; do
 	$XINPUTRC
 done < <(exec $XIDMON)

@@ -23,5 +23,5 @@ fi
 $XINPUTRC
 
 while read -r devinfo; do
-	$XINPUTRC
+	$XINPUTRC || break
 done < <(exec $XIDMON)

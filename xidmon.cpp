@@ -110,7 +110,7 @@ void App::process_hierarchychanged(void* data) {
 	for (int i=0; i<e->num_info; i++) {
 		XIHierarchyInfo &hi=e->info[i];
 		// XISlaveRemoved is too late to get use field
-		int filter_flags = (hi.flags & (XIDeviceEnabled|XIDeviceDisabled));
+		int filter_flags = (hi.flags & XIDeviceEnabled);
 		if (!filter_flags) continue;
 		// XIQueryDevice will be too late to get a name for the removed
 		// device, even for XIDeviceDisabled, so for now, don't bother
